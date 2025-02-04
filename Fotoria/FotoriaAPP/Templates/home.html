@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Página de Inicio{% endblock %}
+
+{% block content %}
+    <!-- <h2>¡Bienvenido a la página de inicio de mi proyecto Django!</h2> -->
+
+    <!-- name = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    date = models.DateField()
+    location = models.CharField(max_length=100)
+    urlimg = models.URLField() -->
+
+
+    <ul>
+        {% for picture in listPicture %}
+        <li>
+            <img src="{{ picture.urlimg }}" alt="{{ picture.name }}">
+            <h3>{{ picture.name }}</h3>
+            <p>{{ picture.descripcion }}</p>
+            <p>Fecha: {{ picture.date }}</p>
+            <p>Ubicación: {{ picture.location }}</p>
+        </li>
+    {% empty %}
+        <p>No hay photos disponibles.</p>
+    {% endfor %}
+    </ul>
+    
+
+    <p>Este es un ejemplo de cómo extender una plantilla base en Django.</p>
+{% endblock %}
