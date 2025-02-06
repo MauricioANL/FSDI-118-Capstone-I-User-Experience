@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
+from .views import PictureListView, PictureCreateView
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('newPicture', views.newPicture, name='newPicture'),
+    path('', PictureListView.as_view(), name='home'),
+    path('new/', PictureCreateView.as_view(), name='newPicture'),
 ]

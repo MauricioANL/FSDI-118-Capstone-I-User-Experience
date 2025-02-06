@@ -1,23 +1,17 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from . import models, forms
 
-def home(request):
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from .models import Picture
+from .forms import PictureForm
 
-    pictureList = models.Picture.objects.all()
+class PictureListView(ListView):
+    model = Picture
+    template_name = 'home.html'  
+    context_object_name = 'listPicture'  
 
-    return render(request,'home.html',{'listPicture': pictureList})
+class PictureCreateView(CreateView):
+    model = Picture
+    form_class = PictureForm
+    template_name = 'newPicture.html'
+    success_url = reverse_lazy('home')
 
-def newPicture(request):
-
-    if request.method == 'POST':
-        form = forms.PictureForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = forms.PictureForm()
-
-    return render(request, 'newPicture.html', {'form': form})
-
-# Create your views here.
