@@ -15,3 +15,7 @@ class PictureCreateView(CreateView):
     template_name = 'newPicture.html'
     success_url = reverse_lazy('home')
 
+    def form_valid(self, form):
+        form.instance.img = self.request.FILES.get('img')  # Captura el archivo
+        return super().form_valid(form)
+

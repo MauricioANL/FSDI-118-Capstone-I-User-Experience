@@ -7,7 +7,8 @@ class Picture(models.Model):
     descripcion = models.TextField()
     date = models.DateField()
     location = models.CharField(max_length=100)
-    urlimg = models.URLField()
+    # urlimg = models.URLField()
+    img = models.ImageField(upload_to='static/img')
 
     def __str__(self):
         return self.name
