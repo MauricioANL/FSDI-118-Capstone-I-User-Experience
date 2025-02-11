@@ -1,4 +1,4 @@
-
+from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
 from .models import Picture
@@ -18,4 +18,10 @@ class PictureCreateView(CreateView):
     def form_valid(self, form):
         form.instance.img = self.request.FILES.get('img')  # Captura el archivo
         return super().form_valid(form)
+    
+
+class UserRegisterView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('login') 
 

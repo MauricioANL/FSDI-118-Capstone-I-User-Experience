@@ -1,9 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Mi Proyecto Django{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/newPic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logout.css' %}">
 </head>
 <body>
     <!-- Encabezado común para todas las páginas -->
@@ -11,8 +17,21 @@
         <h1>Bienvenido a Mi Proyecto Django</h1>
         <nav>
             <!-- <a href="/">Inicio</a> | -->
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'newPicture' %}">New Picture</a>
+            
+            {% if user.is_authenticated %}
+                
+                <a href="{% url 'home' %}">Inicio</a> 
+                <a href="{% url 'newPicture' %}">New Photo</a> 
+                <form action="{% url 'logout' %}" method="post" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn">Cerrar sesión</button>
+                </form>
+                <!-- Enlace de logout -->
+            {% else %}
+            <a href="{% url 'login' %}">Iniciar sesión</a>
+            <a href="{% url 'register' %}">Registrarse</a>
+            
+            {% endif %}
         </nav>
     </header>
 

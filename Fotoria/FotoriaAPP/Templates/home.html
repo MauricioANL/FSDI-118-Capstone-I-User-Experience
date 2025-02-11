@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block title %}Página de Inicio{% endblock %}
 
 {% block content %}
@@ -15,7 +14,7 @@
     <ul>
         {% for picture in listPicture %}
         <li>
-            <img src="{{ picture.urlimg }}" alt="{{ picture.name }}">
+            <img src="{{ picture.img.url }}" alt="{{ picture.name }}">
             <h3>{{ picture.name }}</h3>
             <p>{{ picture.descripcion }}</p>
             <p>Fecha: {{ picture.date }}</p>
