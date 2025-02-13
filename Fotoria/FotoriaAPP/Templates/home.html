@@ -2,14 +2,6 @@
 {% block title %}Página de Inicio{% endblock %}
 
 {% block content %}
-    <!-- <h2>¡Bienvenido a la página de inicio de mi proyecto Django!</h2> -->
-
-    <!-- name = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    date = models.DateField()
-    location = models.CharField(max_length=100)
-    urlimg = models.URLField() -->
-
 
     <ul>
         {% for picture in listPicture %}
@@ -19,12 +11,20 @@
             <p>{{ picture.descripcion }}</p>
             <p>Fecha: {{ picture.date }}</p>
             <p>Ubicación: {{ picture.location }}</p>
+
+            <a href="#" class="edit-icon position-absolute top-0 end-0 p-2" data-id="{{ picture.id }}" data-bs-toggle="modal" data-bs-target="#editModal">
+                <i class="fas fa-edit text-primary fs-4"></i>
+            </a>
+            <!-- <a href="#" class="edit-icon" data-id="{{ picture.id }}">
+                <i class="fas fa-edit"></i>
+            </a> -->
         </li>
     {% empty %}
         <p>No hay photos disponibles.</p>
     {% endfor %}
     </ul>
-    
+
+
 
     <p>Este es un ejemplo de cómo extender una plantilla base en Django.</p>
 {% endblock %}
